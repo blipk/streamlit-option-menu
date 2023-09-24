@@ -170,10 +170,16 @@ if __name__ == "__main__":
         orientation="horizontal",
         styles={
             "container": {"padding": "0!important", "background-color": "#fafafa"},
-            "icon": {"color": "orange", "font-size": "25px"}, # Overrides menu-icon and option-icon unless !important
+            "icon": {
+                "color": "orange",
+                "font-size": "25px",
+            },  # Overrides menu-icon and option-icon unless !important
             "menu-icon": {"color": "purple !important", "font-size": "14px"},
             "option-icon": {"color": "blue !important", "font-size": "10px !important"},
-            "option-icon-selected": {"color": "lightblue", "font-size": "50px !important"},
+            "option-icon-selected": {
+                "color": "lightblue",
+                "font-size": "50px !important",
+            },
             "nav-link": {
                 "font-size": "25px",
                 "text-align": "left",
@@ -182,6 +188,9 @@ if __name__ == "__main__":
             },
             "nav-link-selected": {"background-color": "green"},
             "nav-link-text": {"color": "rgba(100, 100, 100)"},
-            "nav-link-text-selected": {"color": "indigo !important", "filter": "brightness(80%)"},
+            "nav-link-text-selected": {
+                "color": "indigo !important",
+                "filter": "brightness(80%)",
+            },
         },
     )

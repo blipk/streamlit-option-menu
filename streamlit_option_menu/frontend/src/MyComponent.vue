@@ -113,7 +113,6 @@ export default {
         }
 
         // Get user styles and set up state style
-        const userStyles = ref(props.args.styles || {})
         const disabledCursorStyle = { "cursor": "not-allowed" }
         const lightGreyText = { "color": "rgba(250, 250, 250, 0.4)" }
         const greyedText = { "filter": "invert(40%) sepia(4%);" }
@@ -127,8 +126,9 @@ export default {
 
         // Merge the extra styles with users
         const calcStyles = ( ) => {
+            const userStyles = props.args.styles || {}
             const extraStyles = disabled.value ? disabledStyles : {}
-            const finalStyles = { ...userStyles.value }
+            const finalStyles = { ...userStyles }
             for (const elementKey in extraStyles) {
                 if (!(elementKey in finalStyles))
                     finalStyles[elementKey] = extraStyles[elementKey]
@@ -165,7 +165,8 @@ export default {
             () => props.args.disabled,
             () => {
                 disabled.value = props.args.disabled || false
-                styles.value = calcStyles()
+                const updatedStyles = calcStyles()
+                styles.value = updatedStyles
             }
         )
 

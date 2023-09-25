@@ -153,6 +153,7 @@ if __name__ == "__main__":
         styles={
             "container": {"padding": "0!important", "background-color": "#fafafa"},
             "icon": {"color": "orange", "font-size": "25px"},
+            "help": {"cursor": "wait"},
             "nav-link": {
                 "font-size": "25px",
                 "text-align": "left",

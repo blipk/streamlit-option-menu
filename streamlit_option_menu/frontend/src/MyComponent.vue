@@ -297,6 +297,7 @@ export default {
 
 .help {
     position: absolute; z-index: 1;
+    cursor: help;
     width: 33%;
     left: 33%;
     top: 33%;
@@ -314,6 +315,7 @@ export default {
 }
 
 .help .help-text {
+    user-select: none;
     visibility: hidden;
     width: 100%;
     color: #fff;

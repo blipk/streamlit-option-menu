@@ -46,6 +46,7 @@ def option_menu(
     key=None,
     on_change=None,
     disabled=False,
+    help="",
 ):
     """_summary_
 
@@ -60,7 +61,8 @@ def option_menu(
         manual_select (_type_, optional): An index to select. If passed, will change current selection to the passsed.
         key (_type_, optional): The component key. Defaults to None.
         on_change (_type_, optional): A callback function to call when the selection changes. Defaults to None. The callback function must accept a single argument, which will be the key of the option menu. You can fetch current selection by calling st.session_state[key]
-        disabled (_type_, optional): A boolean that will disable and grey the menu and options when `True`. The same as the disabled option on many native streamlit components.
+        disabled (bool, optional): A boolean that will disable and grey the menu and options when `True`. The same as the disabled option on many native streamlit components.
+        help (str, optional): A text that will show in a tooltip when hovering the mouse over the menu, it is invisible if not set or an empty string.
 
     Returns:
         str: The selected option
@@ -88,6 +90,7 @@ def option_menu(
         styles=styles,
         manualSelect=manual_select,
         disabled=disabled,
+        help=help,
     )
     return component_value
 
@@ -159,6 +162,7 @@ if __name__ == "__main__":
             "nav-link-selected": {"background-color": "green"},
         },
         disabled=True,
+        help="This menu is disabled for debug reasons.",
     )
 
     style_menu_example = option_menu(
@@ -192,5 +196,17 @@ if __name__ == "__main__":
                 "color": "indigo !important",
                 "filter": "brightness(80%)",
             },
+            "help": {
+                "top": "5%",
+                "width": "15%",
+                "left": "45%",
+            },
+            "help-inner": {
+                "background-color": "lightslategrey",
+            },
+            "help-text": {
+                "color": "black",
+            },
         },
+        help="style examples",
     )

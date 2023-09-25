@@ -1,8 +1,14 @@
 <template>
     <div class="menu">
-        <div class="container-xxl d-flex flex-column flex-shrink-0"
+        <div class="container-xxl d-flex flex-column flex-shrink-0 help-trigger"
             :class="{'p-3': !isHorizontal, 'p-h':isHorizontal, 'nav-justified': isHorizontal}"
             :style="styleObjectToString(styles['container'])">
+
+            <div class="help" :style="styleObjectToString(styles['help'])" v-if="help">
+                <div class="help-inner" :style="styleObjectToString(styles['help-inner'])">
+                    <span class="help-text" :style="styleObjectToString(styles['help-text'])">{{help}}</span>
+                </div>
+            </div>
             <template v-if="menuTitle">
                 <a href="#"
                    class="menu-title align-items-center mb-md-0 me-md-auto text-decoration-none"
@@ -57,7 +63,8 @@ export default {
         useStreamlit() // lifecycle hooks for automatic Streamlit resize
 
         // const manualSelect = props.args.manualSelect === undefined || props.args.manualSelect === null ? NaN : props.args.manualSelect;
-
+        const help = ref(props.args.help)
+        console.log("HH", help.value)
         const disabled = ref(props.args.disabled)
         const menuTitle = ref(props.args.menuTitle)
         const isHorizontal = props.args.orientation == "horizontal"
@@ -137,7 +144,7 @@ export default {
                 for (const [tag, value] of Object.entries(cssProps))
                     finalStyles[elementKey][tag] = value
             }
-            console.log("styles", finalStyles)
+            // console.log("styles", finalStyles)
             return finalStyles
         }
         const finalStyles = calcStyles()
@@ -170,6 +177,13 @@ export default {
             }
         )
 
+        watch(
+            () => props.args.help,
+            () => {
+                help.value = props.args.help || ""
+            }
+        )
+
         return {
             triggerMenuClick,
             selectedIndex,
@@ -179,7 +193,9 @@ export default {
             styles,
             onClicked,
             styleObjectToString,
-            isHorizontal
+            isHorizontal,
+            help,
+            disabled,
         }
     },
 }
@@ -277,5 +293,38 @@ export default {
 
 .nav-link-text {
     margin: 0;
+}
+
+.help {
+    position: absolute; z-index: 1;
+    width: 33%;
+    left: 33%;
+    top: 33%;
+    z-index: 1;
+}
+
+.help-inner {
+    visibility: hidden;
+    display: flex;
+
+    background-color: black;
+    border-radius: 6px;
+
+    height: 36px;
+}
+
+.help .help-text {
+    visibility: hidden;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    padding: 4px 0;
+}
+
+.help-trigger:hover .help-text  {
+  visibility: visible;
+}
+.help-trigger:hover .help-inner  {
+  visibility: visible;
 }
 </style>

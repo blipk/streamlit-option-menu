@@ -38,10 +38,14 @@ The `option_menu` function accepts the following parameters:
     * "option-icon-selected": the &lt;i> element containing only the icon for the selected option item
     * "icon": all icons, the menu icon and every option item icon
     * "separator": the &lt;hr> element separating the options
+    * "help": the &lt;div> element containing the entire hover tooltip from the `help` argument
+    * "help-inner": the &lt;div> element containing the tooltip border and background style
+    * "help-text": the &lt;span> text element containing the text for the help tooltip
 - manual_select: Pass to manually change the menu item selection.
 The function returns the (string) option currently selected
 - on_change: A callback that will happen when the selection changes. The callback function should accept one argument "key". You can use it to fetch the value of the menu (see [example 5](#examples))
 - disabled: A boolean that will disable and grey the menu and options when `True`. The same as the disabled option on many native streamlit components.
+- help (str, optional): A text that will show in a tooltip when hovering the mouse over the menu, it is invisible if not set or an empty string.
 
 
 
